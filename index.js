@@ -31,6 +31,13 @@ async function run() {
             const bike = await bikeCollection.findOne(query);
             res.send(bike);
         });
+
+        //POST
+        app.post('/bike', async (req, res) => {
+            const newBike = req.body;
+            const result = await bikeCollection.insertOne(newBike);
+            res.send(result);
+        });
     }
     finally {
 
