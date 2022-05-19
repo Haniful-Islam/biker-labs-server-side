@@ -32,7 +32,7 @@ async function run() {
             res.send(bike);
         });
 
-        //POST
+        //post
         app.post('/bike', async (req, res) => {
             const newBike = req.body;
             const result = await bikeCollection.insertOne(newBike);
@@ -58,7 +58,7 @@ run().catch(console.dir);
 
 
 app.get('/', (req, res) => {
-    res.send('Bike is running always');
+    res.send('Bike is running always time');
 })
 
 app.listen(port, () => {
