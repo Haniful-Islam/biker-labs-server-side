@@ -16,7 +16,7 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 async function run() {
     try {
         await client.connect();
-        const bikeCollection = client.db('bikerLabs').collection('bike')
+        const bikeCollection = client.db('bikerLabs').collection('bike');
 
         app.get('/bike', async (req, res) => {
             const query = {};
@@ -44,6 +44,21 @@ async function run() {
             const id = req.params.id;
             const query = {_id: ObjectId(id)};
             const result = await bikeCollection.deleteOne(query);
+            res.send(result);
+        });
+
+        //
+        app.put('/bike/:id', async (req, res) => {
+            const id = req.params.id;
+            const updateBike = req.body;
+            const query = { _id: ObjectId(id) };
+            const options = { upsert: true };
+            const updateDoc = {
+                $set: {
+                    quantity: updateBike.quantity
+                }
+            };
+            const result = await bikeCollection.updateOne(query, updateDoc, options);
             res.send(result);
         });
 
