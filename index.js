@@ -45,7 +45,9 @@ async function run() {
             const query = {_id: ObjectId(id)};
             const result = await bikeCollection.deleteOne(query);
             res.send(result);
-        })
+        });
+
+
     }
     finally {
 
