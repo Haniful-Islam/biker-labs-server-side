@@ -58,9 +58,9 @@ run().catch(console.dir);
 
 
 app.get('/', (req, res) => {
-    res.send('Bike is running');
+    res.send('Bike is running always');
 })
 
 app.listen(port, () => {
-    console.log('listening on port', port);
+    console.log('listening on new port', port);
 })
